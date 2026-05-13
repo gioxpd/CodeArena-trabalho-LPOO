@@ -146,7 +146,7 @@ public class Game {
     private List<Character> createHeroParty() {
         List<Character> heroes = new ArrayList<>();
         heroes.add(new Warrior("Astyanax"));
-        heroes.add(new Healer("Falistra"));
+        heroes.add(new Healer("Fallistra"));
         heroes.add(new Mage("Fynrall"));
         heroes.add(new Archer("MudMug"));
         heroes.add(new Tank("Edrius"));
@@ -225,7 +225,7 @@ public class Game {
         System.out.println("   • Vida alta, ataque forte, defesa média");
         System.out.println("   • Habilidade: Golpe Crítico - Dobra o dano do próximo ataque");
 
-        System.out.println("\n💚 FALISTRA - Curandeira");
+        System.out.println("\n💚 FALLISTRA - Curandeira");
         System.out.println("   Função: Suporte e cura");
         System.out.println("   • Baixa defesa, habilidades de cura");
         System.out.println("   • Habilidade: Cura Divina - Recupera HP de todo o grupo");
@@ -243,7 +243,7 @@ public class Game {
         System.out.println("\n🛡️ EDRIUS - Golem Tank");
         System.out.println("   Função: Defesa");
         System.out.println("   • Defesa extremamente alta, absorve dano");
-        System.out.println("   • Habilidade: Muralha de Pedra - Protege aliados por 2 turnos");
+        System.out.println("   • Habilidade: Escudo de Muralha - Protege aliados por 2 turnos");
 
         pressEnterToContinue();
     }

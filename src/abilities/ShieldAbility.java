@@ -7,7 +7,7 @@ import characters.Character;
  //Usada pelo Tank
 public class ShieldAbility implements Ability {
     private static final String NAME = "Escudo Muralha";
-    private static final String DESCRIPTION = "Ergue uma barreira de pedra que protege todo o grupo.";
+    private static final String DESCRIPTION = "Ergue um escudo que protege todo o grupo.";
     private int duration;
 
     /**

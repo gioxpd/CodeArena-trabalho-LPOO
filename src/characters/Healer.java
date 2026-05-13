@@ -4,7 +4,7 @@ import abilities.HealAbility;
 import java.util.List;
 
 /**
- * Classe Healer (Curandeira) - Representa a heroína Falistra.
+ * Classe Healer (Curandeira) - Representa a heroína Fallistra.
  *
  * Função: Suporte e cura
  * Características:

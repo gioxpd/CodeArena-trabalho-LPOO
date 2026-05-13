@@ -64,7 +64,7 @@ public class Tank extends Character {
     public String usarHabilidade() {
         stoneWallActive = true;
         stoneWallTurns = STONE_WALL_DURATION;
-        return name + " ergue uma MURALHA DE PEDRA! 🛡️🪨 O grupo está protegido por "
+        return name + " ergue um ESCUDO DE MURALHA! 🛡️ O grupo está protegido por "
                 + STONE_WALL_DURATION + " turnos!";
     }
 
