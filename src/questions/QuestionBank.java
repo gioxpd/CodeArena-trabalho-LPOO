@@ -78,9 +78,9 @@ public class QuestionBank {
 
         // Médio
         questions.add(new MultipleChoiceQuestion(
-                "Qual civilização construiu as pirâmides de Gizé?",
-                Category.HISTORIA, Difficulty.MEDIO,
-                "Egípcia", "Maia", "Asteca", "Mesopotâmica"
+                "Qual foi a principal consequência econômica da Revolução Industrial?",
+                Category.HISTORIA, Difficulty.DIFICIL,
+                "Industrialização da produção", "Fim do comércio marítimo", "Extinção das cidades", "Redução do capitalismo"
         ));
 
         questions.add(new TrueFalseQuestion(
@@ -89,9 +89,9 @@ public class QuestionBank {
         ));
 
         questions.add(new MultipleChoiceQuestion(
-                "Qual era a capital do Império Romano?",
-                Category.HISTORIA, Difficulty.MEDIO,
-                "Roma", "Atenas", "Constantinopla", "Alexandria"
+                "Qual era o nome da política econômica baseada no acúmulo de metais preciosos durante a Idade Moderna?",
+                Category.HISTORIA, Difficulty.DIFICIL,
+                "Mercantilismo", "Feudalismo", "Liberalismo", "Socialismo"
         ));
 
         questions.add(new TrueFalseQuestion(
@@ -160,6 +160,36 @@ public class QuestionBank {
                 "Qual foi o principal objetivo das Cruzadas?",
                 Category.HISTORIA, Difficulty.DIFICIL,
                 "Reconquistar Jerusalém", "Expandir Roma", "Descobrir a América", "Unificar a Alemanha"
+        ));
+
+        questions.add(new MultipleChoiceQuestion(
+                "Qual conflito ficou conhecido como a guerra entre Atenas e Esparta na Grécia Antiga?",
+                Category.HISTORIA, Difficulty.DIFICIL,
+                "Guerra do Peloponeso", "Guerras Médicas", "Guerra Púnica", "Guerra dos Trinta Anos"
+        ));
+
+        questions.add(new MultipleChoiceQuestion(
+                "Qual povo antigo ficou conhecido pela criação da escrita cuneiforme?",
+                Category.HISTORIA, Difficulty.DIFICIL,
+                "Sumérios", "Egípcios", "Fenícios", "Hebreus"
+        ));
+
+        questions.add(new MultipleChoiceQuestion(
+                "A Inconfidência Mineira ocorreu principalmente devido ao descontentamento com:",
+                Category.HISTORIA, Difficulty.DIFICIL,
+                "os altos impostos cobrados pela Coroa Portuguesa",
+                "a invasão holandesa no Nordeste",
+                "a proibição da escravidão indígena",
+                "a transferência da capital para Brasília"
+        ));
+
+        questions.add(new MultipleChoiceQuestion(
+                "Qual foi a principal característica política do período conhecido como República Velha no Brasil?",
+                Category.HISTORIA, Difficulty.DIFICIL,
+                "A política do café com leite",
+                "O parlamentarismo imperial",
+                "A ditadura militar",
+                "O voto universal secreto"
         ));
     }
 
@@ -245,6 +275,20 @@ public class QuestionBank {
                 "As bactérias são organismos procariontes.",
                 Category.BIOLOGIA, Difficulty.DIFICIL, true
         ));
+
+        questions.add(new MultipleChoiceQuestion(
+                "O deserto é um bioma que se localiza em regiões de pouca umidade. A fauna é, predominantemente, composta por animais roedores, aves, répteis e artrópodes.\n" +
+                         "Uma adaptação, associada a esse bioma, presente nos seres vivos dos grupos citados é o(a):",
+                Category.BIOLOGIA, Difficulty.DIFICIL, "eliminação de excretas nitrogenadas de forma concentrada",
+                "existência de numerosas glândulas sudoríparas na epiderme", "desenvolvimento do embrião no interior de ovo com casca",
+                "capacidade de controlar a temperatura corporal"
+        ));
+
+        questions.add(new MultipleChoiceQuestion(
+                "A utilização de extratos de origem natural, mais especificamente, os produtos de origem botânica que combatem insetos, podem auxiliar no controle da:",
+                Category.BIOLOGIA, Difficulty.DIFICIL, "leishmaniose",
+                "esquistossomose", "leptospirose", "aids"
+        ));
     }
 
     private void loadProgrammingQuestions() {
@@ -298,7 +342,7 @@ public class QuestionBank {
         questions.add(new MultipleChoiceQuestion(
                 "Qual destas NÃO é uma linguagem de programação?",
                 Category.PROGRAMACAO, Difficulty.FACIL,
-                "Photoshop", "Python", "Java", "C#"
+                "Html", "Python", "Java", "C#"
         ));
 
         // Médio
@@ -494,6 +538,24 @@ public class QuestionBank {
                 Category.GAMES, Difficulty.DIFICIL,
                 "Valve", "id Software", "Bethesda", "Rockstar"
         ));
+
+        questions.add(new MultipleChoiceQuestion(
+                "Qual o nome do protagonista da série Ace Attorney?",
+                Category.GAMES, Difficulty.DIFICIL,
+                "Phoenix Wright", "Euclides Graça", "Miles Edgeworth", "Furio Tigre"
+        ));
+
+        questions.add(new MultipleChoiceQuestion(
+                "Quantos Colossos enfrentamos no jogo Shadow of the Colossus?",
+                Category.GAMES, Difficulty.DIFICIL,
+                "16", "14", "17", "20"
+        ));
+
+        questions.add(new MultipleChoiceQuestion(
+                "Em Rocket League, qual é o nome da mecânica usada para virar rapidamente o carro em 180 graus mantendo velocidade?",
+                Category.GAMES, Difficulty.DIFICIL,
+                "Half Flip", "Musty Flick", "Speed Jump", "Air Dribble"
+        ));
     }
 
     public Question getRandomQuestion() {
@@ -505,6 +567,51 @@ public class QuestionBank {
         Question question = questions.remove(index);
         usedQuestions.add(question);
         return question;
+    }
+
+    public Question getQuestionForLevel(int roundNumber) {
+
+        int chance = random.nextInt(100);
+
+        Difficulty difficulty;
+
+        // Rodadas 1 e 2 -> foco em perguntas fáceis
+        if (roundNumber <= 2) {
+
+            if (chance < 70) {
+                difficulty = Difficulty.FACIL;
+            } else if (chance < 95) {
+                difficulty = Difficulty.MEDIO;
+            } else {
+                difficulty = Difficulty.DIFICIL;
+            }
+
+        }
+        // Rodadas 3 e 4 -> equilíbrio
+        else if (roundNumber <= 4) {
+
+            if (chance < 25) {
+                difficulty = Difficulty.FACIL;
+            } else if (chance < 65) {
+                difficulty = Difficulty.MEDIO;
+            } else {
+                difficulty = Difficulty.DIFICIL;
+            }
+
+        }
+        // Rodada 5 -> final difícil
+        else {
+
+            if (chance < 5) {
+                difficulty = Difficulty.FACIL;
+            } else if (chance < 20) {
+                difficulty = Difficulty.MEDIO;
+            } else {
+                difficulty = Difficulty.DIFICIL;
+            }
+        }
+
+        return getQuestionByDifficulty(difficulty);
     }
 
     public Question getQuestionByCategory(Category category) {

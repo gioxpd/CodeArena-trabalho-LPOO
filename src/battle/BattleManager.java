@@ -122,7 +122,7 @@ public class BattleManager {
         }
 
         // Obtém e exibe pergunta
-        Question question = questionBank.getRandomQuestion();
+        Question question = questionBank.getQuestionForLevel(roundNumber);
         round.setQuestion(question);
 
         System.out.println("\n" + question.display());
