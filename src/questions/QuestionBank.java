@@ -76,6 +76,11 @@ public class QuestionBank {
                 "Apollo 11", "Sputnik 1", "Challenger", "Voyager 1"
         ));
 
+        questions.add(new FillBlankQuestion(
+                "A independência do Brasil foi proclamada por Dom ____ I em 1822.",
+                Category.HISTORIA, Difficulty.FACIL, "Pedro"
+        ));
+
         // Médio
         questions.add(new MultipleChoiceQuestion(
                 "Qual foi a principal consequência econômica da Revolução Industrial?",
@@ -191,6 +196,16 @@ public class QuestionBank {
                 "A ditadura militar",
                 "O voto universal secreto"
         ));
+
+        questions.add(new FillBlankQuestion(
+                "A crise econômica iniciada com a quebra da Bolsa de Nova York em 1929 ficou conhecida como Grande ____.",
+                Category.HISTORIA, Difficulty.DIFICIL, "Depressao"
+        ));
+
+        questions.add(new FillBlankQuestion(
+                "O acordo de 1494 que dividiu as novas terras do Atlântico entre as coroas portuguesa e espanhola, influenciando diretamente a formação territorial do Brasil, foi o Tratado de ____.",
+                Category.HISTORIA, Difficulty.DIFICIL, "Tordesilhas"
+        ));
     }
 
     private void loadBiologyQuestions() {
@@ -216,6 +231,11 @@ public class QuestionBank {
                 "Qual é o maior mamífero do mundo?",
                 Category.BIOLOGIA, Difficulty.FACIL,
                 "Baleia-azul", "Elefante", "Tubarão-baleia", "Girafa"
+        ));
+
+        questions.add(new FillBlankQuestion(
+                "A ____ é a organela responsável pela produção de energia (ATP) na célula.",
+                Category.BIOLOGIA, Difficulty.FACIL, "Mitocôndria", "Mitocondria"
         ));
 
         // Médio
@@ -288,6 +308,11 @@ public class QuestionBank {
                 "A utilização de extratos de origem natural, mais especificamente, os produtos de origem botânica que combatem insetos, podem auxiliar no controle da:",
                 Category.BIOLOGIA, Difficulty.DIFICIL, "leishmaniose",
                 "esquistossomose", "leptospirose", "aids"
+        ));
+
+        questions.add(new FillBlankQuestion(
+                "O processo de divisão celular que origina gametas é chamado de ____.",
+                Category.BIOLOGIA, Difficulty.DIFICIL, "Meiose"
         ));
     }
 
@@ -397,6 +422,12 @@ public class QuestionBank {
                 "#", "//", "/*", "--"
         ));
 
+        questions.add(new FillBlankQuestion(
+                "Em POO, o pilar que esconde os detalhes internos de uma classe é o ____.",
+                Category.PROGRAMACAO, Difficulty.MEDIO, "Encapsulamento"
+        ));
+
+
         // Difícil
         questions.add(new TrueFalseQuestion(
                 "Em Java, o garbage collector pode ser invocado manualmente com garantia de execução imediata.",
@@ -429,6 +460,11 @@ public class QuestionBank {
         questions.add(new TrueFalseQuestion(
                 "Compiladores traduzem código-fonte diretamente para linguagem de máquina.",
                 Category.PROGRAMACAO, Difficulty.DIFICIL, true
+        ));
+
+        questions.add(new FillBlankQuestion(
+                "A palavra-chave usada em Java para herdar de uma classe é ____.",
+                Category.PROGRAMACAO, Difficulty.FACIL, "extends"
         ));
     }
 
@@ -466,6 +502,11 @@ public class QuestionBank {
                 "Qual empresa criou o console Xbox?",
                 Category.GAMES, Difficulty.FACIL,
                 "Microsoft", "Sony", "Nintendo", "SEGA"
+        ));
+
+        questions.add(new FillBlankQuestion(
+                "Em Super Mario, o irmão de Mario se chama ____.",
+                Category.GAMES, Difficulty.FACIL, "Luigi"
         ));
 
         // Médio
@@ -555,6 +596,11 @@ public class QuestionBank {
                 "Em Rocket League, qual é o nome da mecânica usada para virar rapidamente o carro em 180 graus mantendo velocidade?",
                 Category.GAMES, Difficulty.DIFICIL,
                 "Half Flip", "Musty Flick", "Speed Jump", "Air Dribble"
+        ));
+
+        questions.add(new FillBlankQuestion(
+                "A empresa responsável pela franquia Hollow Knight é a ____.",
+                Category.GAMES, Difficulty.DIFICIL, "Team Cherry"
         ));
     }
 
