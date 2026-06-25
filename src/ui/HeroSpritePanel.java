@@ -55,8 +55,12 @@ public class HeroSpritePanel extends JPanel {
             g2.drawRoundRect(spriteX - 6, spriteY - 6, spriteSize + 12, spriteSize + 12, 14, 14);
         }
 
-        // Imagem do herói
-        ImageIcon icon = ImageManager.getHeroImage(hero, spriteSize, spriteSize);
+        // Estado crítico: menos da metade da vida (e ainda vivo)
+        double hpRatio = Math.max(0, (double) hero.getHp() / hero.getMaxHp());
+        boolean critical = alive && hpRatio < 0.5;
+
+        // Imagem do herói (usa a variante de dor quando em estado crítico)
+        ImageIcon icon = ImageManager.getHeroImage(hero, spriteSize, spriteSize, critical);
         if (icon != null) {
             if (!alive) {
                 // Esmaece heróis derrotados

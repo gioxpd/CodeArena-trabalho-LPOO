@@ -30,7 +30,32 @@ public class ImageManager {
      * @return ImageIcon redimensionado ou null se não encontrado
      */
     public static ImageIcon getHeroImage(Character hero, int width, int height) {
+        return getHeroImage(hero, width, height, false);
+    }
+
+    /**
+     * Retorna a imagem do herói, podendo usar a variante de "estado crítico"
+     * (expressão de dor) quando a vida está abaixo da metade.
+     *
+     * O arquivo crítico deve ter o sufixo "_hurt". Por exemplo:
+     * para o Warrior, o arquivo normal é "warrior.png" e o crítico é
+     * "warrior_hurt.png". Caso o arquivo crítico não exista, a imagem
+     * normal é usada como fallback.
+     *
+     * @param hero     personagem herói
+     * @param width    largura desejada
+     * @param height   altura desejada
+     * @param critical true se o herói está com menos da metade da vida
+     * @return ImageIcon redimensionado ou null se não encontrado
+     */
+    public static ImageIcon getHeroImage(Character hero, int width, int height, boolean critical) {
         String key = hero.getClass().getSimpleName().toLowerCase();
+        if (critical) {
+            ImageIcon hurt = load(key + "_hurt.png", width, height);
+            if (hurt != null) {
+                return hurt;
+            }
+        }
         return load(key + ".png", width, height);
     }
 
