@@ -1,5 +1,7 @@
 package ui;
 
+import audio.SoundManager;
+
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import java.awt.CardLayout;
@@ -55,12 +57,14 @@ public class GameWindow extends JFrame {
         root.add(battlePanel, BATTLE);
         cardLayout.show(root, BATTLE);
         battlePanel.refreshAll();
+        SoundManager.playBackgroundLoop();
     }
 
     /**
      * Volta para o menu principal.
      */
     public void showMenu() {
+        SoundManager.stopAll();
         if (battlePanel != null) {
             root.remove(battlePanel);
             battlePanel = null;
@@ -82,6 +86,11 @@ public class GameWindow extends JFrame {
         gameOverPanel = new GameOverPanel(this, controller, victory);
         root.add(gameOverPanel, GAME_OVER);
         cardLayout.show(root, GAME_OVER);
+        if (victory) {
+            SoundManager.playVictory();
+        } else {
+            SoundManager.playDefeat();
+        }
     }
 
     public GameController getController() {

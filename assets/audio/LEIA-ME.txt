@@ -1,0 +1,9 @@
+Coloque aqui os 3 arquivos de música, exatamente com estes nomes:
+
+  background.mp3  -> música de fundo da batalha (toca em loop)
+  victory.mp3     -> música tocada na tela de vitória (toca uma vez)
+  defeat.mp3      -> música tocada na tela de derrota (toca uma vez)
+
+Os arquivos DEVEM estar no formato MP3.
+Se algum arquivo estiver faltando, o jogo continua funcionando normalmente,
+apenas sem aquela faixa (um aviso é exibido no console).
