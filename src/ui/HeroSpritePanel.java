@@ -57,7 +57,7 @@ public class HeroSpritePanel extends JPanel {
 
         // Estado crítico: menos da metade da vida (e ainda vivo)
         double hpRatio = Math.max(0, (double) hero.getHp() / hero.getMaxHp());
-        boolean critical = alive && hpRatio < 0.5;
+        boolean critical = hpRatio < 0.5;
 
         // Imagem do herói (usa a variante de dor quando em estado crítico)
         ImageIcon icon = ImageManager.getHeroImage(hero, spriteSize, spriteSize, critical);

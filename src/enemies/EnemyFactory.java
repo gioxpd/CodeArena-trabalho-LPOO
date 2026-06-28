@@ -102,7 +102,7 @@ public class EnemyFactory {
         String[] icons = {"👑", "🐉", "💀", "🌑"};
 
         int index = random.nextInt(names.length);
-        Enemy enemy = new Enemy(names[index], 400, 40, 25, null, icons[index]);
+        Enemy enemy = new Enemy(names[index], 500, 40, 25, null, icons[index]);
         enemy.setDescription("CHEFE FINAL!");
         return enemy;
     }

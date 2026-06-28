@@ -37,30 +37,29 @@ public class EnemySpritePanel extends JPanel {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         int w = getWidth();
-        int spriteX = (w - spriteSize) / 2;
-        int spriteY = 10;
+        int h = getHeight();
+
+        // Layout ancorado na base: garante que nome e barra de vida fiquem
+        // sempre visíveis mesmo quando o painel recebe menos altura.
+        int barWidth = Math.min(300, w - 40);
+        int barHeight = 22;
+        int barX = (w - barWidth) / 2;
+        int barY = h - barHeight - 12;
+
+        int availableSpriteHeight = barY - 16;
+
+        int drawSize = Math.max(80, Math.min(spriteSize, availableSpriteHeight));
+        int spriteX = (w - drawSize) / 2;
+        int spriteY = Math.max(4, (barY - drawSize) / 2);
 
         // Imagem do inimigo
-        ImageIcon icon = ImageManager.getEnemyImage(enemy.getStage(), spriteSize, spriteSize);
+        ImageIcon icon = ImageManager.getEnemyImage(enemy.getStage(), drawSize, drawSize);
         if (icon != null) {
             g2.drawImage(icon.getImage(), spriteX, spriteY, this);
         } else {
             g2.setColor(Theme.PANEL_LIGHT);
-            g2.fillRoundRect(spriteX, spriteY, spriteSize, spriteSize, 16, 16);
+            g2.fillRoundRect(spriteX, spriteY, drawSize, drawSize, 16, 16);
         }
-
-        // Nome do inimigo
-        g2.setFont(Theme.HEADING);
-        g2.setColor(Theme.ENEMY);
-        String name = enemy.getName();
-        int nameWidth = g2.getFontMetrics().stringWidth(name);
-        g2.drawString(name, (w - nameWidth) / 2, spriteY + spriteSize + 30);
-
-        // Barra de vida larga
-        int barWidth = 300;
-        int barHeight = 22;
-        int barX = (w - barWidth) / 2;
-        int barY = spriteY + spriteSize + 42;
 
         g2.setColor(Theme.PANEL);
         g2.fillRoundRect(barX, barY, barWidth, barHeight, 10, 10);

@@ -48,6 +48,13 @@ public class BattlePanel extends JPanel {
 
     private final StyledButton abilityButton = new StyledButton("Usar Habilidade");
 
+    // Cores e timer para o efeito de piscar quando a habilidade está disponível
+    private static final Color ABILITY_BASE = new Color(0x6A4FA8);
+    private static final Color ABILITY_HOVER = new Color(0x533D85);
+    private static final Color ABILITY_BLINK = new Color(0xF2C94C);
+    private Timer abilityBlinkTimer;
+    private boolean blinkOn = false;
+
     public BattlePanel(GameWindow window, GameController controller) {
         this.window = window;
         this.controller = controller;
@@ -144,7 +151,7 @@ public class BattlePanel extends JPanel {
         scroll.setBorder(BorderFactory.createLineBorder(Theme.PANEL_LIGHT));
         right.add(scroll, BorderLayout.CENTER);
 
-        abilityButton.setColors(new Color(0x6A4FA8), new Color(0x533D85));
+        abilityButton.setColors(ABILITY_BASE, ABILITY_HOVER);
         abilityButton.setForeground(Theme.TEXT);
         abilityButton.setEnabled(false);
         abilityButton.addActionListener(e -> onUseAbility());
@@ -165,7 +172,7 @@ public class BattlePanel extends JPanel {
         stageLabel.setText("Estágio " + controller.getCurrentStage() + " / " + GameController.MAX_STAGES
                 + "      Rodada " + controller.getRoundNumber());
         scoreLabel.setText("Pontuação: " + controller.getScoreSystem().getTotalScore());
-        abilityButton.setEnabled(controller.canUseAbility());
+        updateAbilityButton();
         updateAttackerHighlight();
         showQuestion(controller.getCurrentQuestion());
     }
@@ -173,6 +180,34 @@ public class BattlePanel extends JPanel {
     private void updateAttackerHighlight() {
         for (HeroSpritePanel hp : heroPanels) {
             hp.setHighlighted(false);
+        }
+    }
+
+    /**
+     * Habilita o botão de habilidade e faz com que ele pisque enquanto
+     * a habilidade especial estiver disponível, para chamar a atenção.
+     */
+    private void updateAbilityButton() {
+        boolean available = controller.canUseAbility();
+        abilityButton.setEnabled(available);
+
+        if (available) {
+            if (abilityBlinkTimer == null) {
+                abilityBlinkTimer = new Timer(450, e -> {
+                    blinkOn = !blinkOn;
+                    abilityButton.setColors(blinkOn ? ABILITY_BLINK : ABILITY_BASE, ABILITY_HOVER);
+                    abilityButton.setForeground(blinkOn ? new Color(0x1A1D2E) : Theme.TEXT);
+                });
+                abilityBlinkTimer.start();
+            }
+        } else {
+            if (abilityBlinkTimer != null) {
+                abilityBlinkTimer.stop();
+                abilityBlinkTimer = null;
+            }
+            blinkOn = false;
+            abilityButton.setColors(ABILITY_BASE, ABILITY_HOVER);
+            abilityButton.setForeground(Theme.TEXT);
         }
     }
 
@@ -290,7 +325,7 @@ public class BattlePanel extends JPanel {
             hp.repaint();
         }
         scoreLabel.setText("Pontuação: " + controller.getScoreSystem().getTotalScore());
-        abilityButton.setEnabled(controller.canUseAbility());
+        updateAbilityButton();
     }
 
     private void onUseAbility() {

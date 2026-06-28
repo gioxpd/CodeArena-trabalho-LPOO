@@ -53,7 +53,7 @@ public class GameController {
     public void startNewGame(String playerName) {
         List<Character> heroes = new ArrayList<>();
         heroes.add(new characters.Warrior("Astyanax"));
-        heroes.add(new characters.Healer("Falistra"));
+        heroes.add(new characters.Healer("Fallistra"));
         heroes.add(new characters.Mage("Fynrall"));
         heroes.add(new characters.Archer("MudMug"));
         heroes.add(new characters.Tank("Edrius"));
@@ -167,8 +167,11 @@ public class GameController {
     }
 
     private void distributeEnemyDamage(int totalDamage, TurnResult turn) {
-        List<Character> aliveHeroes = player.getAliveHeroes();
+        List<Character> aliveHeroes = new ArrayList<>(player.getAliveHeroes());
         if (aliveHeroes.isEmpty()) return;
+
+        // Embaralha os heróis vivos para que o inimigo ataque alvos aleatórios
+        java.util.Collections.shuffle(aliveHeroes);
 
         int targets = Math.min(aliveHeroes.size(), 1 + (int) (Math.random() * 2));
         int damagePerTarget = totalDamage / targets;

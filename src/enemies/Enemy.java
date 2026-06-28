@@ -61,23 +61,6 @@ public class Enemy {
         return String.format("%s %s\n   HP: %s", icon, name, getHealthBar());
     }
 
-    public String display() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("\n");
-        sb.append("╔════════════════════════════════════╗\n");
-        sb.append("║           ").append(icon).append(" ").append(name);
-        sb.append(padSpaces(24 - name.length())).append("║\n");
-        sb.append("╠════════════════════════════════════╣\n");
-        sb.append("║  ").append(getHealthBar()).append("   ║\n");
-        sb.append("║  ATK: ").append(padRight(String.valueOf(attack), 8));
-        sb.append(" DEF: ").append(padRight(String.valueOf(defense), 8)).append("║\n");
-        if (description != null && !description.isEmpty()) {
-            sb.append("║  ").append(padRight(description, 32)).append("║\n");
-        }
-        sb.append("╚════════════════════════════════════╝\n");
-        return sb.toString();
-    }
-
     private String padSpaces(int count) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < Math.max(0, count); i++) {

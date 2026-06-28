@@ -106,7 +106,7 @@ public class MenuPanel extends JPanel {
     private void showHeroes() {
         String text = "ASTYANAX - Guerreiro\n" +
                 "DPS físico equilibrado. Habilidade: dobra o dano do próximo ataque.\n\n" +
-                "FALISTRA - Curandeira\n" +
+                "FALLISTRA - Curandeira\n" +
                 "Suporte e cura. Habilidade: recupera HP de todo o grupo.\n\n" +
                 "FYNRALL - Mago\n" +
                 "Dano mágico. Bônus de dano em perguntas difíceis.\n\n" +

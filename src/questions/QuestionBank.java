@@ -297,17 +297,27 @@ public class QuestionBank {
         ));
 
         questions.add(new MultipleChoiceQuestion(
-                "O deserto é um bioma que se localiza em regiões de pouca umidade. A fauna é, predominantemente, composta por animais roedores, aves, répteis e artrópodes.\n" +
-                         "Uma adaptação, associada a esse bioma, presente nos seres vivos dos grupos citados é o(a):",
-                Category.BIOLOGIA, Difficulty.DIFICIL, "eliminação de excretas nitrogenadas de forma concentrada",
-                "existência de numerosas glândulas sudoríparas na epiderme", "desenvolvimento do embrião no interior de ovo com casca",
-                "capacidade de controlar a temperatura corporal"
+                "O processo pelo qual o RNA mensageiro é sintetizado a partir de uma molécula de DNA recebe o nome de:",
+                Category.BIOLOGIA, Difficulty.DIFICIL,
+                "Transcrição", "Replicação", "Tradução", "Mutação"
         ));
 
         questions.add(new MultipleChoiceQuestion(
                 "A utilização de extratos de origem natural, mais especificamente, os produtos de origem botânica que combatem insetos, podem auxiliar no controle da:",
                 Category.BIOLOGIA, Difficulty.DIFICIL, "leishmaniose",
                 "esquistossomose", "leptospirose", "aids"
+        ));
+
+        questions.add(new MultipleChoiceQuestion(
+                "Qual grupo sanguíneo pode doar hemácias para qualquer outro grupo do sistema ABO?",
+                Category.BIOLOGIA, Difficulty.DIFICIL,
+                "O", "B", "A", "AB"
+        ));
+
+        questions.add(new MultipleChoiceQuestion(
+                "A enzima responsável por sintetizar uma nova fita de DNA durante a replicação é a:",
+                Category.BIOLOGIA, Difficulty.DIFICIL,
+                "DNA Polimerase", "Helicase", "Ligase", "Primase"
         ));
 
         questions.add(new FillBlankQuestion(
