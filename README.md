@@ -2,13 +2,32 @@
 
 Jogo de RPG por turnos feito em **Java (Swing)** onde o jogador responde perguntas
 de diferentes categorias (História, Biologia, Programação, Games) para derrotar
-inimigos. Projeto da disciplina de **LPOO**.
+inimigos ao longo de 5 estágios, até enfrentar o chefe final. Projeto da disciplina
+de **LPOO**.
+
+## Como jogar
+
+1. No menu inicial, digite o nome do jogador e inicie a partida.
+2. A cada rodada, uma pergunta é exibida (múltipla escolha, verdadeiro/falso ou preencher a lacuna).
+3. **Acertar** faz um dos heróis atacar o inimigo e acumula carga de habilidade.
+4. **Errar** faz o inimigo atacar o grupo (o Tank pode proteger os aliados).
+5. Ao acumular cargas suficientes, use a **habilidade especial** de um herói.
+6. Derrote o inimigo de cada estágio para avançar. Vencer o estágio 5 conclui o jogo.
+
+## Heróis
+
+| Classe   | Destaque                                                        |
+|----------|-----------------------------------------------------------------|
+| Warrior  | Ataque equilibrado com golpe crítico                            |
+| Healer   | Cura os aliados do grupo                                        |
+| Mage     | Dano mágico extra em perguntas difíceis                         |
+| Archer   | Ataques rápidos com chance de crítico/esquiva                   |
+| Tank     | Alta defesa e proteção dos aliados (muralha de pedra)           |
 
 ## Requisitos
 
 - **JDK 8 ou superior** instalado (`java` e `javac` disponíveis no terminal).
   - Verifique com: `java -version` e `javac -version`
-- A biblioteca **JLayer** já está incluída em `lib/jlayer-1.0.1.jar` (usada para tocar MP3).
 
 ## Estrutura do projeto
 
@@ -16,78 +35,53 @@ inimigos. Projeto da disciplina de **LPOO**.
 .
 ├── src/                  # código-fonte Java
 │   ├── Main.java         # ponto de entrada
-│   ├── audio/            # SoundManager (controle das músicas)
-│   ├── characters/       # heróis e habilidades
-│   ├── enemies/          # inimigos
-│   ├── questions/        # banco de perguntas
-│   ├── system/           # jogador e pontuação
+│   ├── characters/       # heróis, classe base Character e habilidades
+│   ├── enemies/          # inimigos e a fábrica de inimigos por estágio
+│   ├── questions/        # banco de perguntas, tipos de pergunta e avaliação
+│   ├── system/           # jogador e sistema de pontuação
 │   └── ui/               # interface gráfica (Swing)
-├── assets/
-│   ├── images/           # sprites dos personagens e inimigos
-│   └── audio/            # músicas do jogo (MP3) — veja abaixo
-└── lib/
-    └── jlayer-1.0.1.jar  # biblioteca para reprodução de MP3
+└── assets/
+    └── images/           # sprites dos personagens e inimigos
 ```
-
-## Músicas
-
-Coloque os 4 arquivos MP3 na pasta `assets/audio/` com **exatamente** estes nomes:
-
-| Arquivo          | Quando toca                          | Loop |
-|------------------|--------------------------------------|------|
-| `background.mp3` | Durante as batalhas normais (estágios 1 a 4) | Sim  |
-| `boss.mp3`       | Durante a batalha do chefe final (estágio 5) | Sim  |
-| `victory.mp3`    | Tela de vitória                      | Não  |
-| `defeat.mp3`     | Tela de derrota                      | Não  |
-
-> A música de fundo troca automaticamente para a faixa do chefe ao chegar no
-> estágio final, e para quando a tela de vitória/derrota aparece (e ao voltar
-> para o menu). Se algum arquivo faltar, o jogo roda normalmente sem aquela faixa.
 
 ## Como executar
 
-> Importante: o jogo lê as pastas `assets/` e `lib/` a partir do diretório onde
-> você roda os comandos. **Execute sempre a partir da raiz do projeto.**
+> Importante: o jogo lê a pasta `assets/` a partir do diretório onde você roda os
+> comandos. **Execute sempre a partir da raiz do projeto.**
 
 ### Pelo terminal (Linux / macOS)
 
 ```bash
 # 1. Compilar (saída na pasta out/)
-javac -encoding UTF-8 -cp "lib/jlayer-1.0.1.jar" -d out $(find src -name "*.java")
+mkdir -p out
+javac -encoding UTF-8 -d out $(find src -name "*.java")
 
 # 2. Executar
-java -cp "out:lib/jlayer-1.0.1.jar" Main
+java -cp out Main
 ```
 
 ### Pelo terminal (Windows / PowerShell)
 
 ```powershell
 # 1. Compilar
-javac -encoding UTF-8 -cp "lib/jlayer-1.0.1.jar" -d out (Get-ChildItem -Recurse -Filter *.java src).FullName
+mkdir out
+javac -encoding UTF-8 -d out (Get-ChildItem -Recurse -Filter *.java src).FullName
 
-# 2. Executar (no Windows o separador de classpath é ";")
-java -cp "out;lib/jlayer-1.0.1.jar" Main
+# 2. Executar
+java -cp out Main
 ```
 
 ### Pelo IntelliJ IDEA
 
 1. Abra a pasta do projeto no IntelliJ.
-2. **Adicione a biblioteca JLayer ao classpath** (passo obrigatório):
-   **File → Project Structure → Libraries → + (New Project Library) → Java →**
-   selecione `lib/jlayer-1.0.1.jar` → **OK** → **Apply**.
+2. Marque a pasta `src` como **Sources Root**, caso ainda não esteja
+   (clique com o botão direito na pasta → *Mark Directory as → Sources Root*).
 3. Rode a classe `Main` (botão ▶ ao lado do `main`).
-   - Se as imagens/músicas não carregarem, confira em
-     **Run → Edit Configurations** se o *Working directory* é a raiz do projeto.
+   - Se as imagens não carregarem, confira em **Run → Edit Configurations** se o
+     *Working directory* aponta para a raiz do projeto (onde fica a pasta `assets/`).
 
-> **Erro `package javazoom.jl.player.advanced does not exist`?**
-> Isso significa que o JLayer **não foi adicionado ao classpath**. Faça o passo 2 acima.
-> Depois de adicionar a biblioteca, use **Build → Rebuild Project** e rode novamente.
-> (Alternativa: clique com o botão direito em `lib/jlayer-1.0.1.jar` no painel de
-> projeto e escolha **Add as Library...**.)
+## Observações
 
-## Como jogar
-
-1. No menu, digite seu nome e inicie a partida.
-2. A cada turno, leia a pergunta e escolha a resposta.
-   - Acertar causa dano ao inimigo; errar deixa o inimigo atacar.
-3. Derrote todos os estágios de inimigos para vencer.
+- As imagens ficam em `assets/images/` e são carregadas em tempo de execução. Por
+  isso, execute o jogo a partir da raiz do projeto para que os caminhos relativos
+  funcionem corretamente.
