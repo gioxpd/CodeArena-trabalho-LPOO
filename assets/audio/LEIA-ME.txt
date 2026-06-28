@@ -1,6 +1,7 @@
-Coloque aqui os 3 arquivos de música, exatamente com estes nomes:
+Coloque aqui os 4 arquivos de música, exatamente com estes nomes:
 
-  background.mp3  -> música de fundo da batalha (toca em loop)
+  background.mp3  -> música de fundo das batalhas normais (toca em loop)
+  boss.mp3        -> música de fundo da batalha do chefe final (toca em loop)
   victory.mp3     -> música tocada na tela de vitória (toca uma vez)
   defeat.mp3      -> música tocada na tela de derrota (toca uma vez)
 

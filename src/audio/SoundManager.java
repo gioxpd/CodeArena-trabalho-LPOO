@@ -13,8 +13,9 @@ import java.io.InputStream;
  * Usa a biblioteca JLayer (lib/jlayer-1.0.1.jar) para decodificar MP3,
  * já que o Java puro não suporta esse formato nativamente.
  *
- * São três faixas, todas em "assets/audio/":
- *   - background.mp3 : música de fundo da batalha, tocada em loop
+ * São quatro faixas, todas em "assets/audio/":
+ *   - background.mp3 : música de fundo das batalhas normais, em loop
+ *   - boss.mp3       : música de fundo da batalha do chefe final, em loop
  *   - victory.mp3    : tocada uma vez na tela de vitória
  *   - defeat.mp3     : tocada uma vez na tela de derrota
  *
@@ -25,9 +26,13 @@ public final class SoundManager {
 
     private static final String BASE_PATH = "assets/audio/";
 
+    public static final String TRACK_BATTLE = "background.mp3";
+    public static final String TRACK_BOSS = "boss.mp3";
+
     private static AdvancedPlayer backgroundPlayer;
     private static Thread backgroundThread;
     private static volatile boolean backgroundLooping;
+    private static String currentTrack;
 
     private static AdvancedPlayer effectPlayer;
     private static Thread effectThread;
@@ -37,17 +42,36 @@ public final class SoundManager {
     }
 
     /**
-     * Inicia a música de fundo da batalha em loop contínuo.
-     * Se já houver uma música de fundo tocando, ela é reiniciada.
+     * Inicia a música de fundo da batalha normal em loop.
      */
-    public static synchronized void playBackgroundLoop() {
+    public static void playBattleLoop() {
+        playBackgroundLoop(TRACK_BATTLE);
+    }
+
+    /**
+     * Inicia a música de fundo do chefe final em loop.
+     */
+    public static void playBossLoop() {
+        playBackgroundLoop(TRACK_BOSS);
+    }
+
+    /**
+     * Inicia uma música de fundo em loop contínuo.
+     * Se a faixa pedida já estiver tocando, nada acontece (evita reiniciar
+     * a música a cada atualização de tela). Trocar de faixa interrompe a anterior.
+     */
+    public static synchronized void playBackgroundLoop(String fileName) {
+        if (backgroundLooping && fileName.equals(currentTrack)) {
+            return;
+        }
         stopBackground();
 
-        final File file = resolve("background.mp3");
+        final File file = resolve(fileName);
         if (file == null) {
             return;
         }
 
+        currentTrack = fileName;
         backgroundLooping = true;
         backgroundThread = new Thread(() -> {
             while (backgroundLooping) {
@@ -71,6 +95,7 @@ public final class SoundManager {
      */
     public static synchronized void stopBackground() {
         backgroundLooping = false;
+        currentTrack = null;
         if (backgroundPlayer != null) {
             backgroundPlayer.close();
             backgroundPlayer = null;

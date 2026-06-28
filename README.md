@@ -31,17 +31,18 @@ inimigos. Projeto da disciplina de **LPOO**.
 
 ## Músicas
 
-Coloque os 3 arquivos MP3 na pasta `assets/audio/` com **exatamente** estes nomes:
+Coloque os 4 arquivos MP3 na pasta `assets/audio/` com **exatamente** estes nomes:
 
 | Arquivo          | Quando toca                          | Loop |
 |------------------|--------------------------------------|------|
-| `background.mp3` | Durante as batalhas                  | Sim  |
+| `background.mp3` | Durante as batalhas normais (estágios 1 a 4) | Sim  |
+| `boss.mp3`       | Durante a batalha do chefe final (estágio 5) | Sim  |
 | `victory.mp3`    | Tela de vitória                      | Não  |
 | `defeat.mp3`     | Tela de derrota                      | Não  |
 
-> A música de fundo para automaticamente quando a tela de vitória/derrota aparece,
-> e também ao voltar para o menu. Se algum arquivo faltar, o jogo roda normalmente
-> sem aquela faixa.
+> A música de fundo troca automaticamente para a faixa do chefe ao chegar no
+> estágio final, e para quando a tela de vitória/derrota aparece (e ao voltar
+> para o menu). Se algum arquivo faltar, o jogo roda normalmente sem aquela faixa.
 
 ## Como executar
 
@@ -71,11 +72,18 @@ java -cp "out;lib/jlayer-1.0.1.jar" Main
 ### Pelo IntelliJ IDEA
 
 1. Abra a pasta do projeto no IntelliJ.
-2. Adicione a biblioteca ao classpath:
-   **File → Project Structure → Libraries → + → Java →** selecione `lib/jlayer-1.0.1.jar`.
+2. **Adicione a biblioteca JLayer ao classpath** (passo obrigatório):
+   **File → Project Structure → Libraries → + (New Project Library) → Java →**
+   selecione `lib/jlayer-1.0.1.jar` → **OK** → **Apply**.
 3. Rode a classe `Main` (botão ▶ ao lado do `main`).
    - Se as imagens/músicas não carregarem, confira em
      **Run → Edit Configurations** se o *Working directory* é a raiz do projeto.
+
+> **Erro `package javazoom.jl.player.advanced does not exist`?**
+> Isso significa que o JLayer **não foi adicionado ao classpath**. Faça o passo 2 acima.
+> Depois de adicionar a biblioteca, use **Build → Rebuild Project** e rode novamente.
+> (Alternativa: clique com o botão direito em `lib/jlayer-1.0.1.jar` no painel de
+> projeto e escolha **Add as Library...**.)
 
 ## Como jogar
 

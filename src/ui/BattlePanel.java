@@ -1,5 +1,6 @@
 package ui;
 
+import audio.SoundManager;
 import characters.Character;
 import questions.FillBlankQuestion;
 import questions.MultipleChoiceQuestion;
@@ -165,6 +166,7 @@ public class BattlePanel extends JPanel {
     // ----- Atualização de estado -----
 
     public void refreshAll() {
+        updateBattleMusic();
         enemyPanel.setEnemy(controller.getEnemy());
         for (HeroSpritePanel hp : heroPanels) {
             hp.repaint();
@@ -175,6 +177,20 @@ public class BattlePanel extends JPanel {
         updateAbilityButton();
         updateAttackerHighlight();
         showQuestion(controller.getCurrentQuestion());
+    }
+
+    /**
+     * Escolhe a música de fundo conforme o estágio: o estágio final (chefe)
+     * usa a faixa do chefão; os demais usam a faixa de batalha normal.
+     * O SoundManager ignora o pedido se a faixa correta já estiver tocando,
+     * então isso pode ser chamado a cada atualização sem reiniciar a música.
+     */
+    private void updateBattleMusic() {
+        if (controller.getCurrentStage() >= GameController.MAX_STAGES) {
+            SoundManager.playBossLoop();
+        } else {
+            SoundManager.playBattleLoop();
+        }
     }
 
     private void updateAttackerHighlight() {

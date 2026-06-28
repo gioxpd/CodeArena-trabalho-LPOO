@@ -57,7 +57,6 @@ public class GameWindow extends JFrame {
         root.add(battlePanel, BATTLE);
         cardLayout.show(root, BATTLE);
         battlePanel.refreshAll();
-        SoundManager.playBackgroundLoop();
     }
 
     /**
