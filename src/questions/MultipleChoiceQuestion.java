@@ -118,8 +118,6 @@ public class MultipleChoiceQuestion extends Question {
         return letter + ") " + correctAnswer;
     }
 
-    // Getters
-
     public List<String> getOptions() {
         return new ArrayList<>(options);
     }

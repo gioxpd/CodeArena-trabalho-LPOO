@@ -73,12 +73,6 @@ public class Archer extends Character {
         return name + " mira cuidadosamente... 🏹✨ Próximo ataque será uma FLECHA CERTEIRA!";
     }
 
-    public int rapidFire() {
-        int shot1 = (int)(atacar() * 0.6);
-        int shot2 = (int)(atacar() * 0.6);
-        return shot1 + shot2;
-    }
-
     @Override
     public String getClassIcon() {
         return "🏹";

@@ -3,8 +3,6 @@ package system;
 /**
  * Sistema de pontuação do jogo.
  * Controla pontos, bônus e estatísticas.
- *
- * Demonstra: Encapsulamento e responsabilidade única
  */
 public class ScoreSystem {
     private int totalScore;
@@ -44,8 +42,6 @@ public class ScoreSystem {
 
     /**
      * Registra uma resposta correta.
-     *
-     * @param points Pontos ganhos
      */
     public void addCorrectAnswer(int points) {
         correctAnswers++;
@@ -72,9 +68,7 @@ public class ScoreSystem {
     }
 
     /**
-     * Adiciona pontos de bônus.
-     *
-     * @param points Pontos bônus
+     * Adiciona pontos de bônus
      */
     public void addBonusPoints(int points) {
         bonusPoints += points;
@@ -84,8 +78,6 @@ public class ScoreSystem {
 
     /**
      * Calcula bônus baseado na sequência atual.
-     *
-     * @return Pontos de bônus
      */
     private int calculateStreakBonus() {
         if (currentStreak <= 1) return 0;
@@ -96,8 +88,6 @@ public class ScoreSystem {
 
     /**
      * Calcula a taxa de acertos.
-     *
-     * @return Porcentagem de acertos
      */
     public double getAccuracyRate() {
         int total = correctAnswers + wrongAnswers;
@@ -107,8 +97,6 @@ public class ScoreSystem {
 
     /**
      * Retorna o resumo das estatísticas.
-     *
-     * @return String formatada
      */
     public String getStatsSummary() {
         StringBuilder sb = new StringBuilder();

@@ -69,6 +69,11 @@ public abstract class Character {
         bar.append("] ").append(hp).append("/").append(maxHp);
         return bar.toString();
     }
+
+    public String getStatus() {
+        return String.format("%s %s - %s", getClassIcon(), name, getHealthBar());
+    }
+
     // Getters e Setters
 
     public String getName() {

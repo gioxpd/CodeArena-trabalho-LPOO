@@ -39,7 +39,7 @@ public class TrueFalseQuestion extends Question {
                 playerAnswer = false;
                 break;
             default:
-                return false; // Resposta inválida
+                return false;
         }
 
         return playerAnswer == correctAnswerBoolean;
@@ -91,8 +91,6 @@ public class TrueFalseQuestion extends Question {
 
         return lines.toArray(new String[0]);
     }
-
-    // Getter
 
     public boolean isCorrectAnswerTrue() {
         return correctAnswerBoolean;

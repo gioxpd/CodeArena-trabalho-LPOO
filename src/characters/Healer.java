@@ -5,13 +5,11 @@ import java.util.List;
 
 /**
  * Classe Healer (Curandeira) - Representa a heroína Fallistra.
- *
  * Função: Suporte e cura
  * Características:
  * - Baixa defesa
  * - Habilidades de cura
  * - Recupera HP do grupo
- *
  * Demonstra: Herança e comportamento especializado
  */
 public class Healer extends Character {
@@ -55,33 +53,9 @@ public class Healer extends Character {
         return result.toString();
     }
 
-    public int healAlly(Character target) {
-        if (target.isAlive()) {
-            target.heal(HEAL_POWER);
-            return HEAL_POWER;
-        }
-        return 0;
-    }
-
-    //Cura de emergência: cura maior, mas consome HP da curandeira, vou uasar depois
-    public int emergencyHeal(Character target) {
-        int emergencyHealAmount = HEAL_POWER * 2;
-        int hpCost = 20;
-
-        if (target.isAlive() && this.hp > hpCost) {
-            this.hp -= hpCost;
-            target.heal(emergencyHealAmount);
-            return emergencyHealAmount;
-        }
-        return 0;
-    }
-
     @Override
     public String getClassIcon() {
         return "💚";
     }
 
-    public int getHealPower() {
-        return HEAL_POWER;
-    }
 }

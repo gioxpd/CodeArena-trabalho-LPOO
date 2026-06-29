@@ -5,13 +5,11 @@ import java.util.List;
 
 /**
  * Classe Tank (Tanque) - Representa o herói Edrius, um Golem.
- *
  * Função: Defesa
  * Características:
  * - Defesa extremamente alta
  * - Absorve dano
  * - Protege aliados
- *
  * Demonstra: Herança com mecânicas de proteção de grupo
  */
 public class Tank extends Character {
@@ -75,17 +73,6 @@ public class Tank extends Character {
                 stoneWallActive = false;
             }
         }
-    }
-
-
-    public String taunt() {
-        isDefending = true;
-        return name + " provoca o inimigo! 🛡️ Todos os ataques serão direcionados a ele!";
-    }
-
-// vou ver depois
-    public int retaliate() {
-        return defense / 2;
     }
 
     @Override

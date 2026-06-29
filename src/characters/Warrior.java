@@ -4,14 +4,12 @@ import abilities.DoubleDamageAbility;
 
 /**
  * Classe Warrior (Guerreiro) - Representa o herói Astyanax.
- *
  * Função: DPS físico equilibrado
  * Características:
  * - Vida alta
  * - Ataque forte
  * - Defesa média
  * - Habilidade especial: Golpe Crítico
- *
  * Demonstra: Herança (extends Character)
  */
 public class Warrior extends Character {

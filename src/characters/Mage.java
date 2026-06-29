@@ -2,7 +2,6 @@ package characters;
 
 /**
  * Classe Mage (Mago) - Representa o herói Fynrall.
- *
  * Função: Dano mágico
  * Características:
  * - Alto ataque mágico
@@ -54,16 +53,6 @@ public class Mage extends Character {
     public void onCorrectAnswer(int difficulty) {
         int manaRecovery = 10 * difficulty;
         mana = Math.min(maxMana, mana + manaRecovery);
-    }
-
- //vou ver depois
-    public int castSpell() {
-        int spellCost = 15;
-        if (mana >= spellCost) {
-            mana -= spellCost;
-            return attack + 10;
-        }
-        return attack / 2; // Ataque fraco sem mana
     }
 
     @Override

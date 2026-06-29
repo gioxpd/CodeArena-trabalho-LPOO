@@ -3,18 +3,11 @@ package questions;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Pergunta de completar lacuna.
- * O jogador deve digitar a palavra que completa corretamente a frase.
- *
- * Demonstra: Herança (extends Question) e Polimorfismo
- */
 public class FillBlankQuestion extends Question {
     private List<String> acceptedAnswers;
 
     /**
      * Construtor da pergunta de completar lacuna.
-     *
      * @param statement Enunciado com a lacuna (use ____ para indicar a lacuna)
      * @param category Categoria
      * @param difficulty Dificuldade
@@ -34,9 +27,6 @@ public class FillBlankQuestion extends Question {
     /**
      * Verifica se a resposta está correta.
      * Ignora maiúsculas/minúsculas e espaços extras, e aceita respostas alternativas.
-     *
-     * @param answer Resposta do jogador
-     * @return true se correta
      */
     @Override
     public boolean verificarResposta(String answer) {
@@ -68,11 +58,6 @@ public class FillBlankQuestion extends Question {
         return text;
     }
 
-    /**
-     * Exibe a pergunta formatada com a lacuna destacada.
-     *
-     * @return String formatada
-     */
     @Override
     public String display() {
         StringBuilder sb = new StringBuilder();
@@ -97,9 +82,6 @@ public class FillBlankQuestion extends Question {
         return sb.toString();
     }
 
-    /**
-     * Quebra texto em linhas do tamanho especificado.
-     */
     private String[] wrapText(String text, int maxLength) {
         List<String> lines = new ArrayList<>();
         String[] words = text.split(" ");
